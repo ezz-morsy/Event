@@ -1,4 +1,4 @@
-﻿# AGENTS.md — Backend
+# AGENTS.md — Backend
 
 > Instructions for any AI agent working on the **Convene** backend.
 > Read this file fully before touching any code.
@@ -8,11 +8,12 @@
 ## Quick-Start: First Thing To Do
 
 1. Read `PLAN.md` at the repo root to understand the full scope and who owns what.
-2. Check which branch you should be on:
+2. Check which branch you should be on (always use `dev` as your base branch):
    ```
-   git branch -a
+   git checkout dev
+   git pull origin dev
    ```
-3. Create or checkout your feature branch:
+3. Create your feature branch from `dev`:
    ```
    git checkout -b feature/<your-task-name>
    ```
@@ -152,8 +153,10 @@ The `.env` file is gitignored. The `.env.example` file must always exist with th
 
 ## Git Workflow — GitHub CLI
 
-### Start a task
+### Start a task (always from `dev` branch)
 ```
+git checkout dev
+git pull origin dev
 git checkout -b feature/<task-name>
 ```
 
@@ -163,10 +166,10 @@ git add .
 git commit -m "add registration controller with duplicate email check"
 ```
 
-### Push and open a PR
+### Push and open a PR (targeting `dev` branch)
 ```
 git push origin feature/<task-name>
-gh pr create --title "<short description>" --body "<what you did and what was tested>"
+gh pr create --base dev --title "<short description>" --body "<what you did and what was tested>"
 ```
 
 PR description must include: what endpoints were added/changed and what curl commands were used to verify.
@@ -198,6 +201,18 @@ curl http://localhost:5000/api/dashboard
 ```
 
 Every endpoint you touch must return the correct response shape before you push.
+
+---
+
+## Explanation Doc Requirement (Required)
+
+For **every** task/feature you implement, you **must** create a markdown file inside a `docs/` folder (at the project root) named `explain-<feature-name>.md`.
+The file must explain:
+1. **What was done** and **why** it was done.
+2. Write the explanation in simple, clear terms, as if you are **explaining to a freshman CS student**.
+3. **What are the alternative designs/approaches** you considered, and why you chose your specific approach.
+
+This is a strict requirement for all PR approvals.
 
 ---
 

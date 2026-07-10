@@ -1,4 +1,4 @@
-﻿# Convene – Dev Plan
+# Convene – Dev Plan
 
 > **Team:** Ezz + Fawmy
 > **Deadline:** Today
@@ -6,7 +6,7 @@
 > **Architecture:** MVC — strict separation of Models, Controllers, Routes
 > **Style:** Clean and readable. Consistent naming within each file. No strict camelCase required.
 > **Repo:** Monorepo — `backend/` and `frontend/` in one shared repo
-> **Git:** Feature branches per task (e.g. `feature/event-crud`, `feature/registration`)
+> **Git:** Feature branches branched off `dev` and targeting `dev` for PRs (e.g. `feature/event-crud`, `feature/registration`)
 > **SPA Routing:** Hash-based (`#dashboard`, `#events`, `#event/:id`)
 > **Frontend API base:** `const API = "http://localhost:5000"` at top of `app.js`
 > **Deployment:** MongoDB Atlas + Render.com (backend) + Vercel (frontend) — see DEPLOYMENT.md
@@ -77,24 +77,19 @@ convene/                          ← repo root
 
 > Both devs sit together and knock this out. Server will not run without it.
 
-- [ ] Move existing files into `backend/` folder (monorepo structure)
-- [ ] Fix `backend/config/db.js` — implement `connectDB()` and export it
-- [ ] Call `connectDB()` in `server.js` before `app.listen()`
-- [ ] Register `notFound` and `errorHandler` at the bottom of `server.js`
-- [ ] Create `backend/.env`:
-  ```
-  PORT=5000
-  MONGO_URI=mongodb://localhost:27017/convene
-  CLIENT_ORIGIN=http://localhost:3000
-  ```
-- [ ] Create `backend/.env.example` (same keys, empty values)
-- [ ] Rename `utilities/  eventValidator.js` to `utilities/eventValidator.js`
-- [ ] Add unique compound index to `Registration` model:
+- [x] Move existing files into `backend/` folder (monorepo structure)
+- [x] Fix `backend/config/db.js` — implement `connectDB()` and export it
+- [x] Call `connectDB()` in `server.js` before `app.listen()`
+- [x] Register `notFound` and `errorHandler` at the bottom of `server.js`
+- [ ] Create `backend/.env` (Local only, gitignored)
+- [x] Create `backend/.env.example` (same keys, empty values)
+- [x] Rename `utilities/  eventValidator.js` to `utilities/eventValidator.js`
+- [x] Add unique compound index to `Registration` model:
   ```js
   registrationSchema.index({ eventId: 1, email: 1 }, { unique: true });
   ```
-- [ ] Add `min: 1` to `capacity` in `Event` model
-- [ ] Create `backend/seed.js` (see Shared Seed Data section below)
+- [x] Add `min: 1` to `capacity` in `Event` model
+- [x] Create `backend/seed.js` (see Shared Seed Data section below)
 
 **Done when:** `node server.js` connects to MongoDB and `GET /api/health` returns `{ success: true }`.
 

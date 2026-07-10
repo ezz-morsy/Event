@@ -1,5 +1,6 @@
-﻿# Phase 0 — Shared Setup Checklist
+# Phase 0 — Shared Setup Checklist
 
+> **CRITICAL:** Use the `dev` branch for all development! Branch off `dev` and open all PRs targeting `dev`.
 > Do this before anything else. Finish Phase 0 before splitting into feature branches.
 > Both devs work through this list together or in parallel as assigned below.
 
@@ -10,19 +11,19 @@
 | Task | Owner | Status |
 |---|---|---|
 | Set up MongoDB Atlas cluster | **Ezz** | [ ] |
-| Fix `config/db.js` | **Fawmy** | [ ] |
-| Wire `connectDB()` in `server.js` | **Fawmy** | [ ] |
-| Register `notFound` + `errorHandler` in `server.js` | **Fawmy** | [ ] |
-| Create `backend/.env.example` | **Fawmy** | [ ] |
-| Add unique index to `Registration.js` | **Fawmy** | [ ] |
-| Add `min: 1` to `capacity` in `Event.js` | **Fawmy** | [ ] |
-| Rename `utilities/  eventValidator.js` | **Fawmy** | [ ] |
-| Create `backend/seed.js` | **Fawmy** | [ ] |
+| Fix `config/db.js` | **Fawmy** | [x] Done |
+| Wire `connectDB()` in `server.js` | **Fawmy** | [x] Done |
+| Register `notFound` + `errorHandler` in `server.js` | **Fawmy** | [x] Done |
+| Create `backend/.env.example` | **Fawmy** | [x] Done |
+| Add unique index to `Registration.js` | **Fawmy** | [x] Done |
+| Add `min: 1` to `capacity` in `Event.js` | **Fawmy** | [x] Done |
+| Rename `utilities/  eventValidator.js` | **Fawmy** | [x] Done |
+| Create `backend/seed.js` | **Fawmy** | [x] Done |
 | Deploy backend to Render | **Ezz** | [ ] |
 | Seed the live Atlas DB | **Ezz** | [ ] |
 | Smoke test live server | **Ezz** | [ ] |
 | Share live Render URL with Fawmy | **Ezz** | [ ] |
-| Update `const API` in `frontend/app.js` to live URL | **Fawmy** | [ ] |
+| Update `const API` in `frontend/app.js` to live URL | **Fawmy** | [ ] (BLOCKED - Waiting for Ezz Render URL) |
 
 ---
 

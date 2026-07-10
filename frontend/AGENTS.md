@@ -1,4 +1,4 @@
-﻿# AGENTS.md — Frontend
+# AGENTS.md — Frontend
 
 > Instructions for any AI agent working on the **Convene** frontend.
 > Read this file fully before touching any code.
@@ -8,11 +8,12 @@
 ## Quick-Start: First Thing To Do
 
 1. Read `PLAN.md` at the repo root to understand the full scope and who owns what.
-2. Check which branch you should be on:
+2. Check which branch you should be on (always use `dev` as your base branch):
    ```
-   git branch -a
+   git checkout dev
+   git pull origin dev
    ```
-3. Create or checkout your feature branch:
+3. Create your feature branch from `dev`:
    ```
    git checkout -b feature/<your-task-name>
    ```
@@ -167,8 +168,10 @@ Build one reusable `showModal(message, onConfirm)` in `app.js`.
 
 ## Git Workflow — GitHub CLI
 
-### Start a task
+### Start a task (always from `dev` branch)
 ```
+git checkout dev
+git pull origin dev
 git checkout -b feature/<task-name>
 ```
 
@@ -178,10 +181,10 @@ git add .
 git commit -m "add events list view with search and filter"
 ```
 
-### Push and open a PR
+### Push and open a PR (targeting `dev` branch)
 ```
 git push origin feature/<task-name>
-gh pr create --title "<short description>" --body "<what views/features you added and how you tested them>"
+gh pr create --base dev --title "<short description>" --body "<what views/features you added and how you tested them>"
 ```
 
 PR description must include: what views were added/changed and how you verified them in the browser.
@@ -198,6 +201,18 @@ Before opening a PR, manually verify in the browser:
 - [ ] Loading state appears while fetching
 - [ ] Navigation between views works without page reload
 - [ ] Responsive layout works on a narrow window (mobile simulation)
+
+---
+
+## Explanation Doc Requirement (Required)
+
+For **every** task/feature you implement, you **must** create a markdown file inside a `docs/` folder (at the project root) named `explain-<feature-name>.md`.
+The file must explain:
+1. **What was done** and **why** it was done.
+2. Write the explanation in simple, clear terms, as if you are **explaining to a freshman CS student**.
+3. **What are the alternative designs/approaches** you considered, and why you chose your specific approach.
+
+This is a strict requirement for all PR approvals.
 
 ---
 
