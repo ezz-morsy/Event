@@ -1,7 +1,7 @@
 # Explanation: Frontend Project Setup
 
 ## What was done and why
-I set up the basic template structure for the frontend of the Convent Event Platform inside the `frontend/` directory:
+I set up the basic template structure for the frontend of the Convene Event Platform inside the `frontend/` directory:
 1. **index.html**: This is the single HTML page of our application (Single Page Application). It has one root `div` (`<div id="app"></div>`) where JavaScript will dynamically inject all the different views.
 2. **style.css**: A custom stylesheet defining a premium, modern dark mode using Outfit and Plus Jakarta Sans fonts. It includes glassmorphism navbars, smooth transitions, custom scrollbars, loading indicators, and styled toast notifications.
 3. **app.js**: The brain of the frontend. It sets the live backend API URL, defines helpers for loading state and notifications, and sets up a hash-based router (`#dashboard`, `#events`, etc.) that dynamically loads view files on demand.

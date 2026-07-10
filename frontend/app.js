@@ -19,10 +19,14 @@ function showToast(message, type = "success") {
         ? "fa-solid fa-circle-check" 
         : "fa-solid fa-circle-exclamation";
 
-    toast.innerHTML = `
-        <i class="${iconClass}"></i>
-        <span>${message}</span>
-    `;
+    const icon = document.createElement("i");
+    icon.className = iconClass;
+
+    const textSpan = document.createElement("span");
+    textSpan.textContent = message;
+
+    toast.appendChild(icon);
+    toast.appendChild(textSpan);
 
     container.appendChild(toast);
 
@@ -45,7 +49,7 @@ function showModal(message, onConfirm) {
     if (!backdrop || !messageEl) return;
 
     messageEl.textContent = message;
-    modalConfirmCallback = onConfirm;
+    modalConfirmCallback = typeof onConfirm === "function" ? onConfirm : null;
     backdrop.classList.remove("hidden");
 }
 
