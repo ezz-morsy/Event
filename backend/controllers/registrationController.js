@@ -1,35 +1,51 @@
+const mongoose = require("mongoose");
 const Event = require("../models/Event");
 const Registration = require("../models/Registration");
 
 const registerAttendee = async (req, res, next) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
     try {
         const eventId = req.params.id;
         const { name, email } = req.body;
 
-        const event = await Event.findById(eventId);
+        const event = await Event.findById(eventId).session(session);
         if (!event) {
+            await session.abortTransaction();
             return res.status(404).json({ success: false, message: "Event not found" });
         }
 
-        const currentRegistrations = await Registration.countDocuments({ eventId });
+        const currentRegistrations = await Registration.countDocuments({ eventId }).session(session);
         if (currentRegistrations >= event.capacity) {
+            await session.abortTransaction();
             return res.status(400).json({ success: false, message: "Event is at capacity" });
         }
 
-        const existingRegistration = await Registration.findOne({ eventId, email });
+        const existingRegistration = await Registration.findOne({ eventId, email }).session(session);
         if (existingRegistration) {
+            await session.abortTransaction();
             return res.status(400).json({ success: false, message: "Already registered" });
         }
 
-        const registration = await Registration.create({
+        // Using findOneAndUpdate to force a write lock on the event document under this transaction
+        await Event.findOneAndUpdate(
+            { _id: eventId },
+            { $set: { updatedAt: new Date() } }
+        ).session(session);
+
+        const registrations = await Registration.create([{
             eventId,
             name,
             email
-        });
+        }], { session });
 
-        res.status(200).json({ success: true, data: registration });
+        await session.commitTransaction();
+        res.status(200).json({ success: true, data: registrations[0] });
     } catch (error) {
+        await session.abortTransaction();
         next(error);
+    } finally {
+        session.endSession();
     }
 };
 

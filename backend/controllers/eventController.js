@@ -92,7 +92,7 @@ const updateEvent = async (req, res, next) => {
             });
         }
 
-        const updatedEvent = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const updatedEvent = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!updatedEvent) {
             return res.status(404).json({
                 success: false,

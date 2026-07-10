@@ -26,12 +26,23 @@ const validateEvent = (eventData) => {
            message: "Date is required"
     });
 }   
-    if (eventData.capacity <= 0) {
-    errors.push({
-           field: "capacity",
-           message: "Capacity must be greater than 0"
-    });
-}
+    if (eventData.capacity === undefined || eventData.capacity === null || eventData.capacity === "") {
+        errors.push({
+            field: "capacity",
+            message: "Capacity is required"
+        });
+    } else if (isNaN(Number(eventData.capacity)) || Number(eventData.capacity) <= 0) {
+        errors.push({
+            field: "capacity",
+            message: "Capacity must be greater than 0"
+        });
+    }
+    if (!eventData.description) {
+        errors.push({
+            field: "description",
+            message: "Description is required"
+        });
+    }
     return errors;
 };
 
