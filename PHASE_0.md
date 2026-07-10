@@ -10,20 +10,20 @@
 
 | Task | Owner | Status |
 |---|---|---|
-| Set up MongoDB Atlas cluster | **Ezz** | [ ] |
-| Fix `config/db.js` | **Fawmy** | [x] Done |
-| Wire `connectDB()` in `server.js` | **Fawmy** | [x] Done |
-| Register `notFound` + `errorHandler` in `server.js` | **Fawmy** | [x] Done |
-| Create `backend/.env.example` | **Fawmy** | [x] Done |
-| Add unique index to `Registration.js` | **Fawmy** | [x] Done |
-| Add `min: 1` to `capacity` in `Event.js` | **Fawmy** | [x] Done |
-| Rename `utilities/  eventValidator.js` | **Fawmy** | [x] Done |
-| Create `backend/seed.js` | **Fawmy** | [x] Done |
-| Deploy backend to Render | **Ezz** | [ ] |
-| Seed the live Atlas DB | **Ezz** | [ ] |
-| Smoke test live server | **Ezz** | [ ] |
-| Share live Render URL with Fawmy | **Ezz** | [ ] |
-| Update `const API` in `frontend/app.js` to live URL | **Fawmy** | [ ] (BLOCKED - Waiting for Ezz Render URL) |
+| Set up MongoDB Atlas cluster | **Ezz** | [x] Done |
+| Fix `config/db.js` | **4awmy** | [x] Done |
+| Wire `connectDB()` in `server.js` | **4awmy** | [x] Done |
+| Register `notFound` + `errorHandler` in `server.js` | **4awmy** | [x] Done |
+| Create `backend/.env.example` | **4awmy** | [x] Done |
+| Add unique index to `Registration.js` | **4awmy** | [x] Done |
+| Add `min: 1` to `capacity` in `Event.js` | **4awmy** | [x] Done |
+| Rename `utilities/  eventValidator.js` | **4awmy** | [x] Done |
+| Create `backend/seed.js` | **4awmy** | [x] Done |
+| Deploy backend to Render | **Ezz** | [x] Done |
+| Seed the live Atlas DB | **Ezz** | [x] Done |
+| Smoke test live server | **Ezz** | [x] Done |
+| Share live Render URL with 4awmy | **Ezz** | [x] Done |
+| Update `const API` in `frontend/app.js` to live URL | **4awmy** | [ ] (BLOCKED - Waiting for Ezz Render URL) |
 
 ---
 
@@ -39,13 +39,13 @@
    ```
    mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/convene?retryWrites=true&w=majority
    ```
-6. Share the connection string with Fawmy so he can put it in `.env`
+6. Share the connection string with 4awmy so he can put it in `.env`
 
 ---
 
 ### 2. Deploy Backend to Render
 
-> Do this after Fawmy pushes his code fixes to main.
+> Do this after 4awmy pushes his code fixes to main.
 
 1. Go to https://render.com → sign up with GitHub
 2. Click **New** → **Web Service** → connect the `ezz-morsy/Event` repo
@@ -62,7 +62,7 @@
    ```
 5. Click **Create Web Service** — wait for first deploy (~2-3 min)
 6. Copy the live URL (e.g. `https://convene-api.onrender.com`)
-7. Share the URL with Fawmy
+7. Share the URL with 4awmy
 
 ---
 
@@ -93,11 +93,11 @@ Expected response:
 { "success": true }
 ```
 
-If it works — Phase 0 is done on your end. Tell Fawmy the URL.
+If it works — Phase 0 is done on your end. Tell 4awmy the URL.
 
 ---
 
-## Fawmy — Your Tasks
+## 4awmy — Your Tasks
 
 > Start these while Ezz sets up Atlas and Render.
 
@@ -262,7 +262,7 @@ const API = "https://<render-url>.onrender.com";
 
 - [ ] `curl https://<render-url>.onrender.com/api/health` returns `{ "success": true }`
 - [ ] DB has 3 seeded events (check via `GET /api/events`)
-- [ ] Fawmy has the live Render URL in `frontend/app.js`
+- [ ] 4awmy has the live Render URL in `frontend/app.js`
 - [ ] Both devs can hit the live API with no errors
 
 Once all boxes are checked — split into feature branches and start Phase 1.

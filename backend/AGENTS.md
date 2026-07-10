@@ -226,10 +226,10 @@ This is a strict requirement for all PR approvals.
 | GET | /api/events/:id | Ezz |
 | PUT | /api/events/:id | Ezz |
 | DELETE | /api/events/:id | Ezz |
-| POST | /api/events/:id/register | Fawmy |
-| GET | /api/events/:id/attendees | Fawmy |
-| DELETE | /api/events/:id/registrations/:registrationId | Fawmy |
-| GET | /api/dashboard | Fawmy |
+| POST | /api/events/:id/register | 4awmy |
+| GET | /api/events/:id/attendees | 4awmy |
+| DELETE | /api/events/:id/registrations/:registrationId | 4awmy |
+| GET | /api/dashboard | 4awmy |
 
 ---
 

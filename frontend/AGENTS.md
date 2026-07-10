@@ -220,8 +220,8 @@ This is a strict requirement for all PR approvals.
 
 | View | Hash | Owner |
 |---|---|---|
-| Dashboard | #dashboard | Fawmy |
-| Events List | #events | Fawmy |
+| Dashboard | #dashboard | 4awmy |
+| Events List | #events | 4awmy |
 | Event Detail | #event/:id | Ezz |
 | Create Event | #new-event | Ezz |
 | Edit Event | #edit-event/:id | Ezz |
