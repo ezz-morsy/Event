@@ -45,8 +45,9 @@ const getAttendees = async (req, res, next) => {
 
 const deleteRegistration = async (req, res, next) => {
     try {
+        const eventId = req.params.id;
         const { registrationId } = req.params;
-        const registration = await Registration.findByIdAndDelete(registrationId);
+        const registration = await Registration.findOneAndDelete({ _id: registrationId, eventId });
         
         if (!registration) {
             return res.status(404).json({ success: false, message: "Registration not found" });
