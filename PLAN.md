@@ -1,6 +1,6 @@
-﻿# Convene – Dev Plan
+# Convene – Dev Plan
 
-> **Team:** Ezz + Fawmy
+> **Team:** Ezz + 4awmy
 > **Deadline:** Today
 > **Stack:** Node/Express/MongoDB · Vanilla JS SPA
 > **Architecture:** MVC — strict separation of Models, Controllers, Routes
@@ -21,8 +21,8 @@ convene/                          ← repo root
 │   ├── config/db.js
 │   ├── controllers/
 │   │   ├── eventController.js
-│   │   ├── registrationController.js   ← Fawmy creates
-│   │   ├── dashboardController.js      ← Fawmy creates
+│   │   ├── registrationController.js   ← 4awmy creates
+│   │   ├── dashboardController.js      ← 4awmy creates
 │   │   └── healthController.js         ← done
 │   ├── middleware/
 │   │   ├── errorHandler.js             ← done (needs registering)
@@ -31,8 +31,8 @@ convene/                          ← repo root
 │   │   ├── Event.js                    ← minor fix needed
 │   │   └── Registration.js             ← add unique index
 │   ├── routes/
-│   │   ├── eventRoutes.js              ← Fawmy adds registration routes
-│   │   ├── dashboardRoutes.js          ← Fawmy creates
+│   │   ├── eventRoutes.js              ← 4awmy adds registration routes
+│   │   ├── dashboardRoutes.js          ← 4awmy creates
 │   │   └── healthRoutes.js             ← done
 │   ├── utilities/
 │   │   └── eventValidator.js           ← rename + Ezz wires it
@@ -47,12 +47,12 @@ convene/                          ← repo root
 │   ├── style.css
 │   ├── app.js                          ← const API + router + toast
 │   ├── views/
-│   │   ├── dashboard.js                ← Fawmy
-│   │   ├── events.js                   ← Fawmy
+│   │   ├── dashboard.js                ← 4awmy
+│   │   ├── events.js                   ← 4awmy
 │   │   ├── detail.js                   ← Ezz
 │   │   └── form.js                     ← Ezz
 │   ├── AGENTS.md                       ← agent instructions (frontend)
-│   └── README.md                       ← Fawmy writes
+│   └── README.md                       ← 4awmy writes
 ├── PLAN.md                             ← this file
 ├── DEPLOYMENT.md                       ← deployment guide + trade-offs
 └── Event-Platform-Requirements-Full.md ← original requirements
@@ -65,9 +65,9 @@ convene/                          ← repo root
 | Area | Owner |
 |---|---|
 | Backend – Event CRUD + Validation | **Ezz** |
-| Backend – Registration endpoints | **Fawmy** |
-| Backend – Dashboard endpoint | **Fawmy** |
-| Frontend – Router + Toast + Dashboard + Events List | **Fawmy** |
+| Backend – Registration endpoints | **4awmy** |
+| Backend – Dashboard endpoint | **4awmy** |
+| Frontend – Router + Toast + Dashboard + Events List | **4awmy** |
 | Frontend – Event Detail + Create/Edit views | **Ezz** |
 | Shared setup, Phase 0 | **Both** |
 
@@ -218,7 +218,7 @@ Run with: `node seed.js`
 
 ---
 
-## Phase 1 — Backend: Fawmy Tasks
+## Phase 1 — Backend: 4awmy Tasks
 
 ### Branch: `feature/registration`
 
@@ -293,7 +293,7 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 
 ---
 
-## Phase 2 — Frontend: Fawmy Tasks
+## Phase 2 — Frontend: 4awmy Tasks
 
 ### Branch: `feature/frontend-setup`
 
@@ -346,7 +346,7 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 | Task | Owner | Done when |
 |---|---|---|
 | `README.md` for backend | Ezz | Setup steps, .env vars, all endpoints listed |
-| `README.md` for frontend | Fawmy | How to run, what each view does |
+| `README.md` for frontend | 4awmy | How to run, what each view does |
 | Cross-test each other's work | Both | No console errors, no CORS issues |
 | Deploy (see DEPLOYMENT.md) | Both | Live URLs working, DB seeded |
 | Record demo video | Both | Shows all 6 required flows |

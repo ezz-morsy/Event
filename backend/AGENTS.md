@@ -1,4 +1,4 @@
-﻿# AGENTS.md — Backend
+# AGENTS.md — Backend
 
 > Instructions for any AI agent working on the **Convene** backend.
 > Read this file fully before touching any code.
@@ -211,10 +211,10 @@ Every endpoint you touch must return the correct response shape before you push.
 | GET | /api/events/:id | Ezz |
 | PUT | /api/events/:id | Ezz |
 | DELETE | /api/events/:id | Ezz |
-| POST | /api/events/:id/register | Fawmy |
-| GET | /api/events/:id/attendees | Fawmy |
-| DELETE | /api/events/:id/registrations/:registrationId | Fawmy |
-| GET | /api/dashboard | Fawmy |
+| POST | /api/events/:id/register | 4awmy |
+| GET | /api/events/:id/attendees | 4awmy |
+| DELETE | /api/events/:id/registrations/:registrationId | 4awmy |
+| GET | /api/dashboard | 4awmy |
 
 ---
 

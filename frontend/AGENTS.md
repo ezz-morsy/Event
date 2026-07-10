@@ -1,4 +1,4 @@
-﻿# AGENTS.md — Frontend
+# AGENTS.md — Frontend
 
 > Instructions for any AI agent working on the **Convene** frontend.
 > Read this file fully before touching any code.
@@ -205,8 +205,8 @@ Before opening a PR, manually verify in the browser:
 
 | View | Hash | Owner |
 |---|---|---|
-| Dashboard | #dashboard | Fawmy |
-| Events List | #events | Fawmy |
+| Dashboard | #dashboard | 4awmy |
+| Events List | #events | 4awmy |
 | Event Detail | #event/:id | Ezz |
 | Create Event | #new-event | Ezz |
 | Edit Event | #edit-event/:id | Ezz |
