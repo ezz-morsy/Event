@@ -1,40 +1,64 @@
-# Phase 0 Completed — Status & Credentials for 4awmy
+# Convene — Dev Handover & Reference for 4awmy
 
-Hey 4awmy! Ezz has completed his part of the Phase 0 setup. The live backend is deployed on Render and connected to MongoDB Atlas.
-
-Here are the details you need to proceed:
-
-### 1. Live Backend URL
-* **Root URL:** `https://convene-backend-6hzd.onrender.com`
-* **Health Check Endpoint:** `https://convene-backend-6hzd.onrender.com/api/health` (Verified returning `{"success":true}`)
+This document summarizes the current live configuration, credentials, and next steps for **4awmy** following the successful completion of **Phase 0**.
 
 ---
 
-### 2. MongoDB Atlas Connection Details
+## 1. Live Environment URLs
+
+* **Backend API Base URL:** `https://convene-backend-6hzd.onrender.com`
+* **Health Check Endpoint:** `https://convene-backend-6hzd.onrender.com/api/health`
+  * *Verification Status:* Passing green (returns `{"success":true}`).
+
+---
+
+## 2. Database Connection Credentials
+
+The live database is hosted on a MongoDB Atlas M0 Free Cluster. 
+
 * **Database Name:** `convene`
-* **Connection String:**
+* **URI:**
   ```text
   mongodb+srv://abdelazizkhaled687_db_user:Aziz%3F%3F168%25@event.g1ydjqs.mongodb.net/convene?retryWrites=true&w=majority
   ```
-  *(Note: The special characters in the password `Aziz??168%` have been URL-encoded properly to `Aziz%3F%3F168%25`)*
+  *(Note: The database password `Aziz??168%` contains special characters and has been properly URL-encoded as `Aziz%3F%3F168%25` so the driver does not throw URI parsing errors)*
 
 ---
 
-### 3. Setup Done
-* Fawmy's codebase structure fixes and seed scripts are fast-forwarded and merged.
-* All backend files are successfully organized in the `backend/` folder.
-* The Atlas database has been successfully seeded with the 3 default events (via `node seed.js`).
-* A local `.env` has been created under `backend/.env` with the connection string.
-* The backend on Render builds from the `dev` branch with the root directory set to `backend`.
+## 3. Codebase Changes & Local Setup
+
+* **Monorepo Restructuring:** All backend files are now organized under the `backend/` subdirectory.
+* **Seeded Data:** The Atlas DB has been pre-seeded with three default events:
+  1. *Tech Summit 2025*
+  2. *Art Expo*
+  3. *Past Event*
+* **Local `.env` Configuration:**
+  Create a file at `backend/.env` containing:
+  ```env
+  PORT=5000
+  MONGO_URI=mongodb+srv://abdelazizkhaled687_db_user:Aziz%3F%3F168%25@event.g1ydjqs.mongodb.net/convene?retryWrites=true&w=majority
+  CLIENT_ORIGIN=*
+  ```
 
 ---
 
-### 4. Next Steps for You:
-1. Make sure to pull the latest changes on the `dev` or `main` branches.
-2. In Phase 2, when you set up `frontend/app.js`, set the API constant to point to the live Render URL:
+## 4. Next Steps for 4awmy
+
+### Phase 1 — Backend Tasks
+You will work on the `dev` branch. Create your feature branch from it:
+1. **Branch Name:** `feature/registration`
+   * Implement registration controller logic under `backend/controllers/registrationController.js` and wire endpoints in `backend/routes/eventRoutes.js`.
+2. **Branch Name:** `feature/dashboard`
+   * Implement the dashboard statistics logic under `backend/controllers/dashboardController.js` and mount it under `/api/dashboard`.
+
+### Phase 2 — Frontend Tasks
+1. Create a `frontend` folder at the project root.
+2. Inside `frontend/app.js`, set the API URL to target the live Render backend:
    ```javascript
    const API = "https://convene-backend-6hzd.onrender.com";
    ```
-3. Once the frontend is deployed to Vercel, Ezz will update Render's `CLIENT_ORIGIN` env var from `*` to your exact Vercel URL to secure CORS.
+3. Once the frontend is deployed on Vercel, share the URL with Ezz so he can update the `CLIENT_ORIGIN` env var in Render from `*` to your secure production Vercel domain.
 
-Everything is green and ready to go!
+---
+
+Everything is fully verified and connected. Have fun building!
