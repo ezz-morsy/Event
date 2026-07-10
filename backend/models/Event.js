@@ -23,7 +23,8 @@ const eventSchema = new mongoose.Schema({
 
     capacity: {
         type: Number,
-        required: true
+        required: true,
+        min: [1, "Capacity must be greater than 0"]
     },
 
     description: {

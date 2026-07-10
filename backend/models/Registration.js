@@ -23,4 +23,6 @@ const registrationSchema = new mongoose.Schema({
     }
 });
 
+registrationSchema.index({ eventId: 1, email: 1 }, { unique: true });
+
 module.exports = mongoose.model("Registration", registrationSchema);
