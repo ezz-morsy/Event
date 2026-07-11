@@ -66,6 +66,12 @@ Event/ (Root)
 * **Real-time Statistics:** Fetches total events, future upcoming events, and registration counts from the database.
 * **Popular Spotliner:** Highlights the event with the highest registration count on a custom card.
 
+### 5. Category Management (CRUD)
+* **Dedicated Manager:** A "Categories" view accessible via the navigation bar allows users to view, create, edit, and delete categories.
+* **Rename Cascades:** Renaming a category automatically updates the category name on all events using it in the database.
+* **Constraint Protection:** Deletion of a category is blocked if any events are currently assigned to it.
+* **Auto Seeding:** Default categories (Technology, Art, Business, Social, Sports, Education, Music, Other) are seeded automatically on first launch.
+
 ---
 
 ## 🔧 Database Models
@@ -79,6 +85,14 @@ Event/ (Root)
     date: { type: Date, required: true },
     capacity: { type: Number, required: true, min: 1 },
     description: { type: String, required: true }
+}
+```
+
+### Category Schema
+```javascript
+{
+    name: { type: String, required: true, unique: true },
+    description: { type: String, default: "" }
 }
 ```
 

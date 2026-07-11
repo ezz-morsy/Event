@@ -1,6 +1,19 @@
 export default async function renderForm(appContainer, eventId) {
     const isEdit = Boolean(eventId);
 
+    // Fetch categories dynamically
+    let categoriesHTML = '<option value="" disabled selected>Select a category</option>';
+    try {
+        const catRes = await fetch(`${window.API}/categories`);
+        const catJson = await catRes.json();
+        if (catJson.success && catJson.data) {
+            categoriesHTML += catJson.data.map(cat => `<option value="${cat.name}">${cat.name}</option>`).join("");
+        }
+    } catch (err) {
+        console.error("Failed to load categories for form:", err);
+        categoriesHTML += '<option value="Other">Other</option>';
+    }
+
     appContainer.innerHTML = `
         <div class="view-header">
             <h1 class="view-title">${isEdit ? "Edit Event" : "Create Event"}</h1>
@@ -23,15 +36,7 @@ export default async function renderForm(appContainer, eventId) {
                     <div class="form-group">
                         <label for="event-category">Category</label>
                         <select id="event-category" name="category" class="form-control" required>
-                            <option value="" disabled selected>Select a category</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Art">Art</option>
-                            <option value="Business">Business</option>
-                            <option value="Social">Social</option>
-                            <option value="Sports">Sports</option>
-                            <option value="Education">Education</option>
-                            <option value="Music">Music</option>
-                            <option value="Other">Other</option>
+                            ${categoriesHTML}
                         </select>
                         <div class="invalid-feedback" id="error-category"></div>
                     </div>
