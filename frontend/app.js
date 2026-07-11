@@ -1,4 +1,4 @@
-const API = "https://convene-backend-6hzd.onrender.com";
+const API = "http://localhost:5000";
 
 // Make constants and helpers global so all dynamically loaded views can access them
 window.API = API;
@@ -139,6 +139,38 @@ async function handleRouting() {
 
 // Initializations
 document.addEventListener("DOMContentLoaded", () => {
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const themeToggleIcon = document.getElementById("theme-toggle-icon");
+    
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    if (savedTheme === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+        if (themeToggleIcon) {
+            themeToggleIcon.className = "fa-solid fa-sun";
+        }
+    } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        if (themeToggleIcon) {
+            themeToggleIcon.className = "fa-solid fa-moon";
+        }
+    }
+    
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+            const currentTheme = document.documentElement.getAttribute("data-theme");
+            if (currentTheme === "light") {
+                document.documentElement.setAttribute("data-theme", "dark");
+                localStorage.setItem("theme", "dark");
+                if (themeToggleIcon) themeToggleIcon.className = "fa-solid fa-moon";
+            } else {
+                document.documentElement.setAttribute("data-theme", "light");
+                localStorage.setItem("theme", "light");
+                if (themeToggleIcon) themeToggleIcon.className = "fa-solid fa-sun";
+            }
+        });
+    }
+
     // Bind Modal Confirm & Close Events
     const backdrop = document.getElementById("modal-backdrop");
     const closeBtn = document.getElementById("modal-close");
