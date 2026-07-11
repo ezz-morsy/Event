@@ -78,7 +78,6 @@ const routes = {
     "dashboard": { view: "dashboard", nav: "nav-dashboard" },
     "events": { view: "events", nav: "nav-events" },
     "new-event": { view: "form", nav: "nav-new-event" },
-    "categories": { view: "categories", nav: "nav-categories" },
     "event": { view: "detail" },
     "edit-event": { view: "form" }
 };

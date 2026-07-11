@@ -1,0 +1,147 @@
+{
+  "C:\\Users\\omarh\\projects\\Event\\backend\\package.json": {
+    "mtime": 1783685005.7401242,
+    "ast_hash": "0210053c8709abce6ce22321c32d411e",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\seed.js": {
+    "mtime": 1783689759.8827317,
+    "ast_hash": "30198a6a8a67706408a6e8ddd4315cad",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\server.js": {
+    "mtime": 1783691754.2840295,
+    "ast_hash": "71ee87dd23fae7341eb25770bd6619db",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\config\\db.js": {
+    "mtime": 1783689704.433704,
+    "ast_hash": "89fa10e3220d8dffa873d92e33eb9c21",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\controllers\\dashboardController.js": {
+    "mtime": 1783691754.2808719,
+    "ast_hash": "d6d1000b2669a18eb40bf9fcfb8ae751",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\controllers\\eventController.js": {
+    "mtime": 1783685005.7360988,
+    "ast_hash": "1c231d08e7a8eaf795bad5672ec07f0d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\controllers\\healthController.js": {
+    "mtime": 1783685005.7371106,
+    "ast_hash": "fc4abbc1f909551d382d112859f55cad",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\controllers\\registrationController.js": {
+    "mtime": 1783691754.2813942,
+    "ast_hash": "af1be095bf1d58f9d199e9f98e22bcaa",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\middleware\\errorHandler.js": {
+    "mtime": 1783691754.2819262,
+    "ast_hash": "988c4fe3acda8de507c447dba848abe4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\middleware\\notFound.js": {
+    "mtime": 1783685005.738112,
+    "ast_hash": "06cd952a3e9eb074154e2d79f8da10fc",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\models\\Event.js": {
+    "mtime": 1783689743.7326772,
+    "ast_hash": "e91f9c8b74402ec49221e349672e2d27",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\models\\Registration.js": {
+    "mtime": 1783689734.467618,
+    "ast_hash": "a19b1c4b75f232d5a1f94bd8c4d52b29",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\routes\\dashboardRoutes.js": {
+    "mtime": 1783691754.28246,
+    "ast_hash": "e8a531d708f5f03c70992cd9f4ccea4f",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\routes\\eventRoutes.js": {
+    "mtime": 1783691754.283511,
+    "ast_hash": "06dc8923a29b326720d0bb382adb4524",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\routes\\healthRoutes.js": {
+    "mtime": 1783685005.7401242,
+    "ast_hash": "678172f235a8a8fd9ddc73e50e17ee92",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\utilities\\eventValidator.js": {
+    "mtime": 1783685005.7411232,
+    "ast_hash": "f912f778044445ce7c9673654cb98cf6",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\frontend\\app.js": {
+    "mtime": 1783693512.8761792,
+    "ast_hash": "ea67863760a193bf1f68d5a66365c1e2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\DEPLOYMENT.md": {
+    "mtime": 1783689021.7906647,
+    "ast_hash": "4c6d98a48bf6dad02901df7f25130456",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\Event-Platform-Requirements-Full.md": {
+    "mtime": 1783777955.7467246,
+    "ast_hash": "2aa88ae6e01dc733dca7c1ff59cb6436",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\PHASE_0.md": {
+    "mtime": 1783693193.027813,
+    "ast_hash": "9aab75f4e313e6f0700f43d1096e17a3",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\PHASE_0_COMPLETED.md": {
+    "mtime": 1783693033.6378863,
+    "ast_hash": "217c10fb425ea72631f83fae87ce09b2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\tasks.md": {
+    "mtime": 1783778020.0026855,
+    "ast_hash": "9746b947394df935b968bb1446e600e4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\backend\\AGENTS.md": {
+    "mtime": 1783693033.6384823,
+    "ast_hash": "846820b96c0ac10928fac99d03c56f06",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\docs\\explain-dashboard.md": {
+    "mtime": 1783691754.2845526,
+    "ast_hash": "87d366d49a333cdfb94163e962d54fda",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\docs\\explain-frontend-setup.md": {
+    "mtime": 1783693523.2472718,
+    "ast_hash": "25a424a72a74c545a9257bb235480525",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\docs\\explain-registration.md": {
+    "mtime": 1783691754.2850745,
+    "ast_hash": "f84f95d767beb073a9498e6667e94f5b",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\frontend\\AGENTS.md": {
+    "mtime": 1783693033.6390538,
+    "ast_hash": "37cc8b64d7c799659359aa38dc12f8d0",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\frontend\\index.html": {
+    "mtime": 1783693544.06835,
+    "ast_hash": "954816fe41686f25275fe0328fbc7bd4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\omarh\\projects\\Event\\Web Universities Training - Event-Platform Project.pdf": {
+    "mtime": 1783777154.6930437,
+    "ast_hash": "f391960f82cbab27467a7a4db0e2aec6",
+    "semantic_hash": ""
+  }
+}

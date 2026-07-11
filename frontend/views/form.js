@@ -1,19 +1,6 @@
 export default async function renderForm(appContainer, eventId) {
     const isEdit = Boolean(eventId);
 
-    // Fetch categories dynamically
-    let categoriesHTML = '<option value="" disabled selected>Select a category</option>';
-    try {
-        const catRes = await fetch(`${window.API}/categories`);
-        const catJson = await catRes.json();
-        if (catJson.success && catJson.data) {
-            categoriesHTML += catJson.data.map(cat => `<option value="${cat.name}">${cat.name}</option>`).join("");
-        }
-    } catch (err) {
-        console.error("Failed to load categories for form:", err);
-        categoriesHTML += '<option value="Other">Other</option>';
-    }
-
     appContainer.innerHTML = `
         <div class="view-header">
             <h1 class="view-title">${isEdit ? "Edit Event" : "Create Event"}</h1>
@@ -36,8 +23,17 @@ export default async function renderForm(appContainer, eventId) {
                     <div class="form-group">
                         <label for="event-category">Category</label>
                         <select id="event-category" name="category" class="form-control" required>
-                            ${categoriesHTML}
+                            <option value="" disabled selected>Select a category</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Art">Art</option>
+                            <option value="Business">Business</option>
+                            <option value="Social">Social</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Education">Education</option>
+                            <option value="Music">Music</option>
+                            <option value="Other">Other (Type custom value)</option>
                         </select>
+                        <input type="text" id="event-category-other" class="form-control" placeholder="Specify custom category..." style="display: none; margin-top: 0.5rem;">
                         <div class="invalid-feedback" id="error-category"></div>
                     </div>
                     <div class="form-group">
@@ -76,6 +72,24 @@ export default async function renderForm(appContainer, eventId) {
     const form = document.getElementById("event-form");
     if (!form) return;
 
+    const categorySelect = document.getElementById("event-category");
+    const otherInput = document.getElementById("event-category-other");
+
+    // Dynamic visibility event listener
+    if (categorySelect && otherInput) {
+        categorySelect.addEventListener("change", () => {
+            if (categorySelect.value === "Other") {
+                otherInput.style.display = "block";
+                otherInput.required = true;
+                otherInput.focus();
+            } else {
+                otherInput.style.display = "none";
+                otherInput.required = false;
+                otherInput.value = "";
+            }
+        });
+    }
+
     // Fetch and prefill data if in Edit Mode
     if (isEdit) {
         try {
@@ -86,7 +100,22 @@ export default async function renderForm(appContainer, eventId) {
             if (json.success && json.data) {
                 const event = json.data;
                 form.title.value = event.title || "";
-                form.category.value = event.category || "";
+                
+                // Bind and prefill category (standard vs custom)
+                const standardCategories = ["Technology", "Art", "Business", "Social", "Sports", "Education", "Music"];
+                if (event.category) {
+                    if (standardCategories.includes(event.category)) {
+                        form.category.value = event.category;
+                        otherInput.style.display = "none";
+                        otherInput.required = false;
+                    } else {
+                        form.category.value = "Other";
+                        otherInput.style.display = "block";
+                        otherInput.required = true;
+                        otherInput.value = event.category;
+                    }
+                }
+                
                 form.capacity.value = event.capacity || "";
                 form.location.value = event.location || "";
                 form.description.value = event.description || "";
@@ -116,7 +145,10 @@ export default async function renderForm(appContainer, eventId) {
         clearErrors();
 
         const title = form.title.value.trim();
-        const category = form.category.value;
+        let category = form.category.value;
+        if (category === "Other" && otherInput) {
+            category = otherInput.value.trim();
+        }
         const capacityVal = parseInt(form.capacity.value, 10);
         const location = form.location.value.trim();
         const dateVal = form.date.value;

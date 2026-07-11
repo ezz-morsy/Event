@@ -1,17 +1,4 @@
 export default async function renderEvents(appContainer) {
-    // Fetch categories dynamically
-    let categoriesHTML = '<option value="">All Categories</option>';
-    try {
-        const catRes = await fetch(`${window.API}/categories`);
-        const catJson = await catRes.json();
-        if (catJson.success && catJson.data) {
-            categoriesHTML += catJson.data.map(cat => `<option value="${cat.name}">${cat.name}</option>`).join("");
-        }
-    } catch (err) {
-        console.error("Failed to load categories for filter:", err);
-        categoriesHTML += '<option value="Other">Other</option>';
-    }
-
     appContainer.innerHTML = `
         <div class="view-header">
             <h1 class="view-title">Browse Events</h1>
@@ -30,7 +17,15 @@ export default async function renderEvents(appContainer) {
                 <div class="form-group" style="margin-bottom: 0;">
                     <label for="filter-category">Category</label>
                     <select id="filter-category" name="category" class="form-control">
-                        ${categoriesHTML}
+                        <option value="">All Categories</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Art">Art</option>
+                        <option value="Business">Business</option>
+                        <option value="Social">Social</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Education">Education</option>
+                        <option value="Music">Music</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
                 <div class="form-group" style="margin-bottom: 0;">

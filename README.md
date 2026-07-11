@@ -15,7 +15,6 @@ Event/ (Root)
 │   ├── config/
 │   │   └── db.js                  # Database connection module using Mongoose
 │   ├── controllers/               # Business logic controllers
-│   │   ├── categoryController.js  # Category CRUD handlers (rename cascade & deletion guards)
 │   │   ├── dashboardController.js # Statistics aggregation pipelines
 │   │   ├── eventController.js     # Event CRUD & query parameters handler
 │   │   └── registrationController.js # Registration transactions (capacity guards & duplicate checks)
@@ -23,11 +22,9 @@ Event/ (Root)
 │   │   ├── errorHandler.js        # Global error interception (JSON payloads)
 │   │   └── notFound.js            # Catch-all fallback for undefined routes
 │   ├── models/                    # Mongoose database schemas
-│   │   ├── Category.js            # Category schema (name & description)
 │   │   ├── Event.js               # Event schema (capacity constraints)
 │   │   └── Registration.js        # Registration schema (compound unique indexes)
 │   ├── routes/                    # API route declarations mapping controllers
-│   │   ├── categoryRoutes.js      # Routes under /api/categories
 │   │   ├── dashboardRoutes.js     # Routes under /api/dashboard
 │   │   ├── eventRoutes.js         # Routes under /api/events
 │   │   └── healthRoutes.js        # Health status check route under /api/health
@@ -42,11 +39,10 @@ Event/ (Root)
 │   ├── package.json               # Node scripts & module dependencies
 │   ├── README.md                  # Dedicated Backend guide
 │   ├── seed.js                    # Database seeder script for sample events
-│   └── server.js                  # Express server listener & default category seeder
+│   └── server.js                  # Express server listener
 │
 ├── frontend/                      # Vanilla JS Single Page Application (SPA)
 │   ├── views/                     # Modular render scripts (dynamic ESM)
-│   │   ├── categories.js          # Categories view (CRUD layout & inline editing forms)
 │   │   ├── dashboard.js           # Statistics tiles & popular event spotlight
 │   │   ├── detail.js              # Event description details, status trackers, & attendee list
 │   │   ├── events.js              # Event list browser with search filter queries
@@ -72,18 +68,12 @@ Event/ (Root)
 ### 2. Event Management (CRUD)
 * **Create Event:** Fill out the creation form. The system validates fields (title, category, date, location, capacity, description).
 * **Future-Date Check:** Enforces that new events can only be scheduled for a future date & time.
-* **Edit Event:** Prefills event data using the event ID read from the URL hash route.
+* **Flexible Categories:** Offers a list of standard categories (Technology, Art, Business, Social, Sports, Education, Music). Selecting **Other** dynamically reveals an inline text input field where users can type in and save a custom category.
+* **Edit Event:** Prefills event details using the event ID read from the URL hash route. Prefills custom categories back into the "Other" text input field automatically.
 * **Capacity Guard:** Blocks editing the capacity of an event to a number lower than its current registration count.
 * **Cascade Deletions:** Deleting an event triggers a database cleanup, automatically deleting all registration records linked to that event.
 
-### 3. Category Management (CRUD)
-* **Dedicated Manager:** A "Categories" view lists all existing categories with inline controls.
-* **Inline Form Editing:** Allows editing name/description fields directly. Clicking "Edit" populates the right-hand panel form with a "Cancel" backup button.
-* **Rename Cascade:** Renaming a category automatically triggers a backend query update, updating the category field on all assigned events in MongoDB.
-* **Referential Safeguard:** Deleting a category is blocked if any active events are currently assigned to it, showing a warning toast message.
-* **Auto-Seeding:** If the category collection is empty, the database seeds default categories (*Technology, Art, Business, Social, Sports, Education, Music, Other*) on server boot.
-
-### 4. Attendee Registrations
+### 3. Attendee Registrations
 * **Dynamic Capacity Tracker:** Shows a progress bar representing filled seats. Turns red when fully booked.
 * **Double-Constraint Guards:**
   * **Duplicate Prevention:** Utilizes a compound index `(eventId, email)` in MongoDB to prevent users from registering twice for the same event.
@@ -91,7 +81,7 @@ Event/ (Root)
   * **Past Event Guard:** Prevents registration if the event date has already passed.
 * **Attendee List:** Shows registered names and emails, and allows canceling registrations with a modal confirmation popup.
 
-### 5. Interactive Dashboard
+### 4. Interactive Dashboard
 * **Real-time Statistics:** Fetches total events, future upcoming events, and total attendee registrations.
 * **Popular Spotlight Card:** Highlights the event with the highest registration count.
 
@@ -99,10 +89,10 @@ Event/ (Root)
 
 ## 🔧 Database Models & Schema Specifications
 
-The project leverages three Mongoose models linked through logical relationships:
+The project leverages two Mongoose models linked through logical relationships:
 
 ### 1. Event Model (`backend/models/Event.js`)
-Stores event details. Storing `category` as a String maintains backwards compatibility while enabling flexible, cascade-updated renames.
+Stores event details, with categories stored as strings for maximum flexibility and runtime variance.
 ```javascript
 {
     title: { type: String, required: true },
@@ -114,16 +104,7 @@ Stores event details. Storing `category` as a String maintains backwards compati
 }
 ```
 
-### 2. Category Model (`backend/models/Category.js`)
-Defines categories that populate search filters and creation dropdowns.
-```javascript
-{
-    name: { type: String, required: true, unique: true },
-    description: { type: String, default: "" }
-}
-```
-
-### 3. Registration Model (`backend/models/Registration.js`)
+### 2. Registration Model (`backend/models/Registration.js`)
 Tracks attendee registrations, linking them back to the event.
 ```javascript
 {
@@ -146,12 +127,6 @@ Tracks attendee registrations, linking them back to the event.
 * `POST /api/events` — Create a new event (enforces future date check).
 * `PUT /api/events/:id` — Update an event (checks capacity bounds).
 * `DELETE /api/events/:id` — Delete an event (triggers cascade registration deletions).
-
-### Categories (`/api/categories`)
-* `GET /api/categories` — Get all categories.
-* `POST /api/categories` — Create a new category.
-* `PUT /api/categories/:id` — Update category details (triggers event updates if renamed).
-* `DELETE /api/categories/:id` — Delete category (fails if used by active events).
 
 ### Registrations (`/api/events/:id/registrations`)
 * `GET /api/events/:id/registrations` — Get all attendees registered for a specific event.
