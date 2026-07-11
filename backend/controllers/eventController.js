@@ -92,6 +92,17 @@ const updateEvent = async (req, res, next) => {
             });
         }
 
+        const currentRegistrations = await Registration.countDocuments({ eventId: req.params.id });
+        if (req.body.capacity !== undefined && req.body.capacity < currentRegistrations) {
+            return res.status(400).json({
+                success: false,
+                errors: [{
+                    field: "capacity",
+                    message: `Capacity cannot be reduced below the number of registered attendees (${currentRegistrations})`
+                }]
+            });
+        }
+
         const updatedEvent = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!updatedEvent) {
             return res.status(404).json({
