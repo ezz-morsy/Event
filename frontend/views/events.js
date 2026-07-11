@@ -22,6 +22,9 @@ export default async function renderEvents(appContainer) {
                         <option value="Art">Art</option>
                         <option value="Business">Business</option>
                         <option value="Social">Social</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Education">Education</option>
+                        <option value="Music">Music</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
