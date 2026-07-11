@@ -290,6 +290,12 @@ body {
     background: #ffffff;
 }
 
+select.form-control option {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+}
+
+
 .form-control.is-invalid {
     border-color: var(--error);
 }

@@ -1,4 +1,4 @@
-const validateEvent = (eventData) => {
+const validateEvent = (eventData, isEdit = false) => {
     const errors = [];
 
     if (!eventData.title) {
@@ -25,7 +25,12 @@ const validateEvent = (eventData) => {
            field: "date",
            message: "Date is required"
     });
-}   
+} else if (!isEdit && new Date(eventData.date) < new Date()) {
+         errors.push({
+           field: "date",
+           message: "Event date must be in the future"
+         });
+    }   
     if (eventData.capacity === undefined || eventData.capacity === null || eventData.capacity === "") {
         errors.push({
             field: "capacity",

@@ -64,7 +64,7 @@ const getEventById = async (req, res, next) => {
 
 const createEvent = async (req, res, next) => {
     try {
-        const errors = validateEvent(req.body);
+        const errors = validateEvent(req.body, false);
         if (errors.length > 0) {
             return res.status(400).json({
                 success: false,
@@ -84,7 +84,7 @@ const createEvent = async (req, res, next) => {
 
 const updateEvent = async (req, res, next) => {
     try {
-        const errors = validateEvent(req.body);
+        const errors = validateEvent(req.body, true);
         if (errors.length > 0) {
             return res.status(400).json({
                 success: false,

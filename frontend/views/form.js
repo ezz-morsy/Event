@@ -135,6 +135,9 @@ export default async function renderForm(appContainer, eventId) {
         if (!dateVal) {
             showFieldError("event-date", "error-date", "Date & Time is required");
             hasClientError = true;
+        } else if (!isEdit && new Date(dateVal) < new Date()) {
+            showFieldError("event-date", "error-date", "Event date must be in the future");
+            hasClientError = true;
         }
         if (!description) {
             showFieldError("event-description", "error-description", "Description is required");
