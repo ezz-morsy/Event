@@ -23,7 +23,7 @@
 | Seed the live Atlas DB | **Ezz** | [x] Done |
 | Smoke test live server | **Ezz** | [x] Done |
 | Share live Render URL with 4awmy | **Ezz** | [x] Done |
-| Update `const API` in `frontend/app.js` to live URL | **4awmy** | [x] Done |
+| Update `const API` in `frontend/app.js` to live URL | **4awmy** | [ ] (BLOCKED - Waiting for Ezz Render URL) |
 
 ---
 
