@@ -1,4 +1,4 @@
-const API = "http://localhost:5000";
+const API = "https://convene-backend-6hzd.onrender.com";
 
 // Make constants and helpers global so all dynamically loaded views can access them
 window.API = API;
