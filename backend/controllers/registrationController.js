@@ -15,6 +15,11 @@ const registerAttendee = async (req, res, next) => {
             return res.status(404).json({ success: false, message: "Event not found" });
         }
 
+        if (event.date && new Date(event.date) < new Date()) {
+            await session.abortTransaction();
+            return res.status(400).json({ success: false, message: "Cannot register for an event that has already passed" });
+        }
+
         const currentRegistrations = await Registration.countDocuments({ eventId }).session(session);
         if (currentRegistrations >= event.capacity) {
             await session.abortTransaction();

@@ -15,8 +15,8 @@ function showToast(message, type = "success") {
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
 
-    const iconClass = type === "success" 
-        ? "fa-solid fa-circle-check" 
+    const iconClass = type === "success"
+        ? "fa-solid fa-circle-check"
         : "fa-solid fa-circle-exclamation";
 
     const icon = document.createElement("i");
@@ -45,7 +45,7 @@ let modalConfirmCallback = null;
 function showModal(message, onConfirm) {
     const backdrop = document.getElementById("modal-backdrop");
     const messageEl = document.getElementById("modal-message");
-    
+
     if (!backdrop || !messageEl) return;
 
     messageEl.textContent = message;
@@ -106,7 +106,7 @@ async function handleRouting() {
             // Dynamically import the specific view script
             const modulePath = `./views/${route.view}.js`;
             const viewModule = await import(modulePath);
-            
+
             // Execute render function
             if (viewModule.default) {
                 await viewModule.default(appContainer, param);
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
             closeModal();
         });
     }
-    
+
     // Close modal if clicking outside the card
     if (backdrop) {
         backdrop.addEventListener("click", (e) => {
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set up routing listeners
     window.addEventListener("hashchange", handleRouting);
-    
+
     // Kickstart initial route
     handleRouting();
 });

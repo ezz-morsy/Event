@@ -60,7 +60,9 @@ export default async function renderDetail(appContainer, eventId) {
             const attendeesJson = await attendeesRes.json();
             const attendees = Array.isArray(attendeesJson.data) ? attendeesJson.data : [];
 
+            const isExpired = event.date ? new Date(event.date) < new Date() : false;
             const isFull = attendees.length >= event.capacity;
+            const isClosed = isFull || isExpired;
             const progressPercent = Math.min(100, Math.round((attendees.length / event.capacity) * 100));
 
             // Format event date beautifully
@@ -126,7 +128,11 @@ export default async function renderDetail(appContainer, eventId) {
                         <!-- Registration Form Card -->
                         <div class="card-view" style="margin-bottom: 0;">
                             <h3 style="font-family: var(--font-heading); margin-bottom: 1rem;">Register for Event</h3>
-                            ${isFull ? `
+                            ${isExpired ? `
+                                <div style="background: rgba(245, 158, 11, 0.1); border: 1px dashed var(--warning); border-radius: 8px; padding: 1rem; text-align: center; color: var(--warning); font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem;">
+                                    <i class="fa-solid fa-calendar-xmark"></i> This event has already passed. Registration closed.
+                                </div>
+                            ` : isFull ? `
                                 <div style="background: rgba(239, 68, 68, 0.1); border: 1px dashed var(--error); border-radius: 8px; padding: 1rem; text-align: center; color: var(--error); font-weight: 500; font-size: 0.9rem; margin-bottom: 1rem;">
                                     <i class="fa-solid fa-triangle-exclamation"></i> This event is at capacity. Registration closed.
                                 </div>
@@ -134,15 +140,15 @@ export default async function renderDetail(appContainer, eventId) {
                             <form id="registration-form">
                                 <div class="form-group">
                                     <label for="reg-name">Full Name</label>
-                                    <input type="text" id="reg-name" class="form-control" placeholder="Your name" required ${isFull ? 'disabled' : ''}>
+                                    <input type="text" id="reg-name" class="form-control" placeholder="Your name" required ${isClosed ? 'disabled' : ''}>
                                     <div class="invalid-feedback" id="error-name"></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="reg-email">Email Address</label>
-                                    <input type="email" id="reg-email" class="form-control" placeholder="your.email@example.com" required ${isFull ? 'disabled' : ''}>
+                                    <input type="email" id="reg-email" class="form-control" placeholder="your.email@example.com" required ${isClosed ? 'disabled' : ''}>
                                     <div class="invalid-feedback" id="error-email"></div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem;" ${isFull ? 'disabled' : ''}>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem;" ${isClosed ? 'disabled' : ''}>
                                     <i class="fa-solid fa-user-plus"></i> Confirm Registration
                                 </button>
                             </form>
