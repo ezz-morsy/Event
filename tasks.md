@@ -81,7 +81,7 @@ convene/                          ← repo root
 - [x] Fix `backend/config/db.js` — implement `connectDB()` and export it
 - [x] Call `connectDB()` in `server.js` before `app.listen()`
 - [x] Register `notFound` and `errorHandler` at the bottom of `server.js`
-- [ ] Create `backend/.env` (Local only, gitignored)
+- [ ] Create `backend/.env` (Local only, gitignored) — must contain: `MONGO_URI`, `PORT`, `CLIENT_ORIGIN`
 - [x] Create `backend/.env.example` (same keys, empty values)
 - [x] Rename `utilities/  eventValidator.js` to `utilities/eventValidator.js`
 - [x] Add unique compound index to `Registration` model:
@@ -90,6 +90,17 @@ convene/                          ← repo root
   ```
 - [x] Add `min: 1` to `capacity` in `Event` model
 - [x] Create `backend/seed.js` (see Shared Seed Data section below)
+- [ ] Add `npm run dev` script to `backend/package.json` (nodemon):
+  ```json
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  }
+  ```
+- [ ] Fix CORS origin in `server.js` — must explicitly allow `http://localhost:5500` for local dev:
+  ```js
+  app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:5500" }));
+  ```
 
 **Done when:** `node server.js` connects to MongoDB and `GET /api/health` returns `{ success: true }`.
 
@@ -155,6 +166,8 @@ Run with: `node seed.js`
   - `date` → match events on that calendar day
 - Return `{ success: true, data: events }`
 
+> ⚠️ **Gap:** Currently returns hardcoded `[]` — no DB query, no filters implemented.
+
 **Definition of Done:**
 - [ ] `GET /api/events` returns all 3 seeded events
 - [ ] `GET /api/events?search=tech` returns only Tech Summit
@@ -165,6 +178,8 @@ Run with: `node seed.js`
 #### Task 2 — getEventById
 - `Event.findById(req.params.id)`
 - 404 with `{ success: false, message: "Event not found" }` if missing
+
+> ⚠️ **Gap:** Currently returns hardcoded `{}` — no DB lookup, no 404 handling.
 
 **Definition of Done:**
 - [ ] Valid ID returns the event
@@ -177,6 +192,8 @@ Run with: `node seed.js`
 - `Event.create(req.body)` if valid
 - Return `{ success: true, data: newEvent }`
 
+> ⚠️ **Gap:** Currently returns a static message — no `Event.create()`, validator never called.
+
 **Definition of Done:**
 - [ ] POST with all fields → 200 + new event doc
 - [ ] POST missing title → `[{ field: "title", message: "..." }]`
@@ -187,6 +204,8 @@ Run with: `node seed.js`
 - Same validation as create
 - `Event.findByIdAndUpdate(id, body, { new: true })`
 - Return updated document, 404 if not found
+
+> ⚠️ **Gap:** Currently returns a static message — no DB update, no validation, no 404.
 
 **Definition of Done:**
 - [ ] PUT with valid data → returns updated doc
@@ -200,6 +219,8 @@ Run with: `node seed.js`
 - `Registration.deleteMany({ eventId: id })` — cascade delete
 - Return `{ success: true, message: "Event deleted" }`
 
+> ⚠️ **Gap:** Currently returns a static message — no DB delete, cascade delete not implemented.
+
 **Definition of Done:**
 - [ ] DELETE valid ID → event and its registrations gone
 - [ ] DELETE bad ID → 404
@@ -210,6 +231,8 @@ Run with: `node seed.js`
 - Import `eventValidator.js` in `eventController.js`
 - Call it in `createEvent` and `updateEvent`
 - Errors shape: `[{ field, message }]`
+
+> ⚠️ **Gap:** `eventValidator.js` exists in `utilities/` but is never imported or called anywhere.
 
 ---
 
@@ -293,25 +316,31 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 ### Branch: `feature/frontend-setup`
 
 #### Task 10 — Project Setup
-- [ ] `index.html`: single `<div id="app">`, nav with `#dashboard`, `#events`, `#new-event`
-- [ ] `app.js`: `const API = "http://localhost:5000"` (update to live URL before deploy), hash router
-- [ ] Global `showToast(message, type)` and `showModal(message, onConfirm)` in `app.js`
+- [x] `index.html`: single `<div id="app">`, nav with `#dashboard`, `#events`, `#new-event`
+- [x] `app.js`: `const API = "https://convene-backend-6hzd.onrender.com"` (live Render URL set), hash router
+- [x] Global `showToast(message, type)` and `showModal(message, onConfirm)` in `app.js`
+- [ ] Verify nav bar is **fixed at top** in `style.css` with **active-state** styling on current link
+- [ ] Verify toasts are styled **green** for `success` type and **red** for `error` type in `style.css`
 
 ---
 
 #### Task 11 — Dashboard View (#dashboard)
+- Create **`frontend/views/dashboard.js`** ← ⚠️ FILE DOES NOT EXIST
 - Fetch `GET /api/dashboard`, render 4 stat cards, loading + error states
 
 **Definition of Done:**
+- [ ] `frontend/views/dashboard.js` created
 - [ ] Cards show correct data
 - [ ] Error toast shows if API is down
 
 ---
 
 #### Task 12 — Events List View (#events)
+- Create **`frontend/views/events.js`** ← ⚠️ FILE DOES NOT EXIST
 - Fetch events, render cards, search/filter as query params, confirm modal on delete
 
 **Definition of Done:**
+- [ ] `frontend/views/events.js` created
 - [ ] All seeded events show, filtering works, delete removes card
 
 ---
@@ -321,18 +350,23 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 ### Branch: `feature/frontend-detail-form`
 
 #### Task 13 — Event Detail View (#event/:id)
+- Create **`frontend/views/detail.js`** ← ⚠️ FILE DOES NOT EXIST
 - Fetch event + attendees, registration form (disabled when full), attendee delete
 
 **Definition of Done:**
+- [ ] `frontend/views/detail.js` created
 - [ ] Event info renders, registering adds attendee, form disables when full, delete works
 
 ---
 
 #### Task 14 — Create / Edit Event Form (#new-event / #edit-event/:id)
-- Detect mode, pre-fill on edit, POST/PUT, inline errors, success toast + redirect
+- Create **`frontend/views/form.js`** ← ⚠️ FILE DOES NOT EXIST
+- Detect mode from **URL hash** (`#edit-event/:id` vs `#new-event`), pre-fill on edit, POST/PUT, inline errors, success toast + redirect
+- Inline errors must be styled **red** and placed **beneath each invalid field**
 
 **Definition of Done:**
-- [ ] Empty submit shows inline errors, create redirects to list, edit pre-fills and saves
+- [ ] `frontend/views/form.js` created
+- [ ] Empty submit shows inline errors (red, beneath each field), create redirects to list, edit pre-fills and saves
 
 ---
 
@@ -345,6 +379,9 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 | Cross-test each other's work | Both | No console errors, no CORS issues |
 | Deploy (see DEPLOYMENT.md) | Both | Live URLs working, DB seeded |
 | Record demo video | Both | Shows all 6 required flows |
+| **Split monorepo into two repos** | Both | `event-platform-backend` + `event-platform-frontend` submitted separately |
+
+> ⚠️ **Repo naming is a submission requirement from the PDF.** Current repo `ezz-morsy/Event` must be split before final hand-in.
 
 ---
 

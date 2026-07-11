@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convene — Event Management Platform</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-compass-drafting logo-icon"></i>
+                <span class="logo-text">Convene</span>
+            </div>
+            <nav class="main-nav">
+                <a href="#dashboard" class="nav-link" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-simple"></i> Dashboard
+                </a>
+                <a href="#events" class="nav-link" id="nav-events">
+                    <i class="fa-solid fa-calendar-days"></i> Events
+                </a>
+                <a href="#new-event" class="nav-link" id="nav-new-event">
+                    <i class="fa-solid fa-calendar-plus"></i> Create Event
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="content-container">
+        <!-- Root Render Target -->
+        <div id="app"></div>
+    </main>
+
+    <!-- Global Components -->
+    <!-- Toast System -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Reusable Modal System -->
+    <div id="modal-backdrop" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-title">Confirm Action</h3>
+                <button id="modal-close" class="modal-close-btn" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message">Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-cancel-btn" class="btn btn-secondary">Cancel</button>
+                <button id="modal-confirm-btn" class="btn btn-danger">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="global-loading" class="global-loading hidden">
+        <div class="spinner-container">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Connecting to server...</p>
+        </div>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
