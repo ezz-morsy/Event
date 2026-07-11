@@ -11,7 +11,7 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 const app = express();
 
 app.use(cors({
-    origin: process.env.CLIENT_ORIGIN
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:5500"
 }));
 
 app.use(express.json());
