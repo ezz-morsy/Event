@@ -23,7 +23,7 @@ app.use("/api/dashboard", dashboardRoutes);
 app.get("/", (req, res) => {
     res.json({
         success: true,
-        message: "Event Platform API is running"
+        message: "Modern Reservation System API is running"
     });
 });
 
