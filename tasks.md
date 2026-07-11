@@ -81,7 +81,7 @@ convene/                          ← repo root
 - [x] Fix `backend/config/db.js` — implement `connectDB()` and export it
 - [x] Call `connectDB()` in `server.js` before `app.listen()`
 - [x] Register `notFound` and `errorHandler` at the bottom of `server.js`
-- [ ] Create `backend/.env` (Local only, gitignored) — must contain: `MONGO_URI`, `PORT`, `CLIENT_ORIGIN`
+- [x] Create `backend/.env` (Local only, gitignored) — must contain: `MONGO_URI`, `PORT`, `CLIENT_ORIGIN`
 - [x] Create `backend/.env.example` (same keys, empty values)
 - [x] Rename `utilities/  eventValidator.js` to `utilities/eventValidator.js`
 - [x] Add unique compound index to `Registration` model:
@@ -90,14 +90,14 @@ convene/                          ← repo root
   ```
 - [x] Add `min: 1` to `capacity` in `Event` model
 - [x] Create `backend/seed.js` (see Shared Seed Data section below)
-- [ ] Add `npm run dev` script to `backend/package.json` (nodemon):
+- [x] Add `npm run dev` script to `backend/package.json` (nodemon):
   ```json
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   }
   ```
-- [ ] Fix CORS origin in `server.js` — must explicitly allow `http://localhost:5500` for local dev:
+- [x] Fix CORS origin in `server.js` — must explicitly allow `http://localhost:5500` for local dev:
   ```js
   app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:5500" }));
   ```
@@ -169,9 +169,9 @@ Run with: `node seed.js`
 > ⚠️ **Gap:** Currently returns hardcoded `[]` — no DB query, no filters implemented.
 
 **Definition of Done:**
-- [ ] `GET /api/events` returns all 3 seeded events
-- [ ] `GET /api/events?search=tech` returns only Tech Summit
-- [ ] `GET /api/events?category=Art` returns only Art Expo
+- [x] `GET /api/events` returns all 3 seeded events
+- [x] `GET /api/events?search=tech` returns only Tech Summit
+- [x] `GET /api/events?category=Art` returns only Art Expo
 
 ---
 
@@ -182,8 +182,8 @@ Run with: `node seed.js`
 > ⚠️ **Gap:** Currently returns hardcoded `{}` — no DB lookup, no 404 handling.
 
 **Definition of Done:**
-- [ ] Valid ID returns the event
-- [ ] Fake ID returns 404
+- [x] Valid ID returns the event
+- [x] Fake ID returns 404
 
 ---
 
@@ -195,8 +195,8 @@ Run with: `node seed.js`
 > ⚠️ **Gap:** Currently returns a static message — no `Event.create()`, validator never called.
 
 **Definition of Done:**
-- [ ] POST with all fields → 200 + new event doc
-- [ ] POST missing title → `[{ field: "title", message: "..." }]`
+- [x] POST with all fields → 200 + new event doc
+- [x] POST missing title → `[{ field: "title", message: "..." }]`
 
 ---
 
@@ -208,9 +208,9 @@ Run with: `node seed.js`
 > ⚠️ **Gap:** Currently returns a static message — no DB update, no validation, no 404.
 
 **Definition of Done:**
-- [ ] PUT with valid data → returns updated doc
-- [ ] PUT with missing field → validation error
-- [ ] PUT with bad ID → 404
+- [x] PUT with valid data → returns updated doc
+- [x] PUT with missing field → validation error
+- [x] PUT with bad ID → 404
 
 ---
 
@@ -222,8 +222,8 @@ Run with: `node seed.js`
 > ⚠️ **Gap:** Currently returns a static message — no DB delete, cascade delete not implemented.
 
 **Definition of Done:**
-- [ ] DELETE valid ID → event and its registrations gone
-- [ ] DELETE bad ID → 404
+- [x] DELETE valid ID → event and its registrations gone
+- [x] DELETE bad ID → 404
 
 ---
 
@@ -249,9 +249,9 @@ Run with: `node seed.js`
 - `Registration.create(...)` and return it
 
 **Definition of Done:**
-- [ ] Valid registration → 200 + registration doc
-- [ ] Duplicate email → 400 "Already registered"
-- [ ] Full event → 400 "Event is at capacity"
+- [x] Valid registration → 200 + registration doc
+- [x] Duplicate email → 400 "Already registered"
+- [x] Full event → 400 "Event is at capacity"
 
 ---
 
@@ -260,8 +260,8 @@ Run with: `node seed.js`
 - Return `{ success: true, data: attendees }`
 
 **Definition of Done:**
-- [ ] Returns name + email only
-- [ ] Empty array if no registrations
+- [x] Returns name + email only
+- [x] Empty array if no registrations
 
 ---
 
@@ -270,8 +270,8 @@ Run with: `node seed.js`
 - 404 if not found
 
 **Definition of Done:**
-- [ ] Valid ID → deleted, 200
-- [ ] Bad ID → 404
+- [x] Valid ID → deleted, 200
+- [x] Bad ID → 404
 
 ---
 
@@ -306,8 +306,8 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 - Mount in `server.js`: `app.use("/api/dashboard", require("./routes/dashboardRoutes"))`
 
 **Definition of Done:**
-- [ ] Returns all 4 fields with correct values against seeded data
-- [ ] `mostPopularEvent` is null/empty if no registrations (no crash)
+- [x] Returns all 4 fields with correct values against seeded data
+- [x] `mostPopularEvent` is null/empty if no registrations (no crash)
 
 ---
 
@@ -319,8 +319,8 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 - [x] `index.html`: single `<div id="app">`, nav with `#dashboard`, `#events`, `#new-event`
 - [x] `app.js`: `const API = "https://convene-backend-6hzd.onrender.com"` (live Render URL set), hash router
 - [x] Global `showToast(message, type)` and `showModal(message, onConfirm)` in `app.js`
-- [ ] Verify nav bar is **fixed at top** in `style.css` with **active-state** styling on current link
-- [ ] Verify toasts are styled **green** for `success` type and **red** for `error` type in `style.css`
+- [x] Verify nav bar is **fixed at top** in `style.css` with **active-state** styling on current link
+- [x] Verify toasts are styled **green** for `success` type and **red** for `error` type in `style.css`
 
 ---
 
@@ -329,9 +329,9 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 - Fetch `GET /api/dashboard`, render 4 stat cards, loading + error states
 
 **Definition of Done:**
-- [ ] `frontend/views/dashboard.js` created
-- [ ] Cards show correct data
-- [ ] Error toast shows if API is down
+- [x] `frontend/views/dashboard.js` created
+- [x] Cards show correct data
+- [x] Error toast shows if API is down
 
 ---
 
@@ -340,8 +340,8 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 - Fetch events, render cards, search/filter as query params, confirm modal on delete
 
 **Definition of Done:**
-- [ ] `frontend/views/events.js` created
-- [ ] All seeded events show, filtering works, delete removes card
+- [x] `frontend/views/events.js` created
+- [x] All seeded events show, filtering works, delete removes card
 
 ---
 
@@ -354,8 +354,8 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 - Fetch event + attendees, registration form (disabled when full), attendee delete
 
 **Definition of Done:**
-- [ ] `frontend/views/detail.js` created
-- [ ] Event info renders, registering adds attendee, form disables when full, delete works
+- [x] `frontend/views/detail.js` created
+- [x] Event info renders, registering adds attendee, form disables when full, delete works
 
 ---
 
@@ -365,8 +365,8 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 - Inline errors must be styled **red** and placed **beneath each invalid field**
 
 **Definition of Done:**
-- [ ] `frontend/views/form.js` created
-- [ ] Empty submit shows inline errors (red, beneath each field), create redirects to list, edit pre-fills and saves
+- [x] `frontend/views/form.js` created
+- [x] Empty submit shows inline errors (red, beneath each field), create redirects to list, edit pre-fills and saves
 
 ---
 
@@ -374,12 +374,12 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 
 | Task | Owner | Done when |
 |---|---|---|
-| `README.md` for backend | Ezz | Setup steps, .env vars, all endpoints listed |
-| `README.md` for frontend | 4awmy | How to run, what each view does |
-| Cross-test each other's work | Both | No console errors, no CORS issues |
-| Deploy (see DEPLOYMENT.md) | Both | Live URLs working, DB seeded |
-| Record demo video | Both | Shows all 6 required flows |
-| **Split monorepo into two repos** | Both | `event-platform-backend` + `event-platform-frontend` submitted separately |
+| `README.md` for backend | Ezz | Setup steps, .env vars, all endpoints listed [x] |
+| `README.md` for frontend | 4awmy | How to run, what each view does [x] |
+| Cross-test each other's work | Both | No console errors, no CORS issues [ ] |
+| Deploy (see DEPLOYMENT.md) | Both | Live URLs working, DB seeded [ ] |
+| Record demo video | Both | Shows all 6 required flows [ ] |
+| **Split monorepo into two repos** | Both | `event-platform-backend` + `event-platform-frontend` submitted separately [ ] |
 
 > ⚠️ **Repo naming is a submission requirement from the PDF.** Current repo `ezz-morsy/Event` must be split before final hand-in.
 
