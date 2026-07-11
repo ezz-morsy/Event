@@ -40,6 +40,13 @@
     --shadow-nav: 0 20px 40px -15px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.05);
     --shadow-input: inset 0 2px 4px rgba(0, 0, 0, 0.5);
     --shadow-modal: 0 40px 80px -20px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+
+    /* Element Theme Backgrounds */
+    --bg-input: rgba(10, 10, 12, 0.4);
+    --bg-loading: rgba(3, 3, 3, 0.85);
+    --bg-icon-well: rgba(255, 255, 255, 0.02);
+    --bg-item: rgba(255, 255, 255, 0.01);
+    --bg-progress: rgba(255, 255, 255, 0.03);
 }
 
 /* Light Theme Variables Override */
@@ -65,8 +72,15 @@
     --shadow-card: 0 20px 40px -15px rgba(15, 23, 42, 0.05), inset 0 1px 0px rgba(255, 255, 255, 0.8);
     --shadow-card-hover: 0 30px 50px -10px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
     --shadow-nav: 0 10px 30px -10px rgba(15, 23, 42, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.9);
-    --shadow-input: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+    --shadow-input: inset 0 1px 2px rgba(15, 23, 42, 0.05);
     --shadow-modal: 0 30px 60px -15px rgba(15, 23, 42, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+
+    /* Element Theme Backgrounds */
+    --bg-input: #ffffff;
+    --bg-loading: rgba(248, 250, 252, 0.85);
+    --bg-icon-well: rgba(15, 23, 42, 0.04);
+    --bg-item: rgba(15, 23, 42, 0.015);
+    --bg-progress: rgba(15, 23, 42, 0.05);
 }
 
 /* Global Reset & Base */
@@ -345,7 +359,7 @@ body::after {
     padding: 0.85rem 1.25rem;
     border-radius: 12px;
     border: 1px solid var(--border-color);
-    background: rgba(10, 10, 12, 0.4);
+    background: var(--bg-input);
     color: var(--text-primary);
     font-family: var(--font-body);
     font-size: 0.9rem;
@@ -419,7 +433,7 @@ body::after {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-icon-well);
     border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
@@ -603,7 +617,7 @@ body::after {
     position: fixed;
     inset: 0;
     z-index: 1100;
-    background: rgba(3, 3, 3, 0.85);
+    background: var(--bg-loading);
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
@@ -687,7 +701,7 @@ body::after {
     margin-bottom: 0.5rem;
 }
 .progress-bar-bg {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-progress);
     height: 6px;
     border-radius: 99px;
     overflow: hidden;
@@ -718,7 +732,7 @@ body::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.01);
+    background: var(--bg-item);
     border: 1px solid var(--border-color);
     padding: 0.75rem 1rem;
     border-radius: 12px;
