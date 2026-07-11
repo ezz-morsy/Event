@@ -293,9 +293,9 @@ router.delete("/:id/registrations/:registrationId", deleteRegistration);
 ### Branch: `feature/frontend-setup`
 
 #### Task 10 — Project Setup
-- [ ] `index.html`: single `<div id="app">`, nav with `#dashboard`, `#events`, `#new-event`
-- [ ] `app.js`: `const API = "http://localhost:5000"` (update to live URL before deploy), hash router
-- [ ] Global `showToast(message, type)` and `showModal(message, onConfirm)` in `app.js`
+- [x] `index.html`: single `<div id="app">`, nav with `#dashboard`, `#events`, `#new-event`
+- [x] `app.js`: `const API = "https://convene-backend-6hzd.onrender.com"` (live Render URL set), hash router
+- [x] Global `showToast(message, type)` and `showModal(message, onConfirm)` in `app.js`
 
 ---
 
