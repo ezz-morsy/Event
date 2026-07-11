@@ -11,9 +11,10 @@
     --border-color: rgba(255, 255, 255, 0.05);
     --border-hover: rgba(255, 255, 255, 0.12);
     
-    --primary: #6366f1;
-    --primary-hover: #4f46e5;
-    --primary-glow: rgba(99, 102, 241, 0.15);
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-glow: rgba(var(--primary-rgb), 0.15);
+    --primary-rgb: 37, 99, 235;
     
     --text-primary: #fafafa;
     --text-secondary: #a1a1aa;
@@ -31,7 +32,7 @@
     --glass-blur: blur(20px);
 
     /* Ambient Gradients */
-    --ambient-orb-1: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+    --ambient-orb-1: radial-gradient(circle, rgba(var(--primary-rgb), 0.06) 0%, transparent 70%);
     --ambient-orb-2: radial-gradient(circle, rgba(16, 185, 129, 0.03) 0%, transparent 70%);
     
     /* Shadows */
@@ -58,15 +59,16 @@
     --border-color: rgba(0, 0, 0, 0.06);
     --border-hover: rgba(0, 0, 0, 0.12);
     
-    --primary: #4f46e5;
-    --primary-hover: #4338ca;
-    --primary-glow: rgba(79, 70, 229, 0.08);
+    --primary: #1d4ed8;
+    --primary-hover: #1e40af;
+    --primary-glow: rgba(var(--primary-rgb), 0.08);
+    --primary-rgb: 29, 78, 216;
     
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --text-muted: #94a3b8;
     
-    --ambient-orb-1: radial-gradient(circle, rgba(99, 102, 241, 0.04) 0%, transparent 70%);
+    --ambient-orb-1: radial-gradient(circle, rgba(var(--primary-rgb), 0.04) 0%, transparent 70%);
     --ambient-orb-2: radial-gradient(circle, rgba(16, 185, 129, 0.02) 0%, transparent 70%);
     
     --shadow-card: 0 20px 40px -15px rgba(15, 23, 42, 0.05), inset 0 1px 0px rgba(255, 255, 255, 0.8);
@@ -176,7 +178,7 @@ body::after {
 .logo-icon {
     font-size: 1.25rem;
     color: var(--primary);
-    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.6));
+    filter: drop-shadow(0 0 10px rgba(var(--primary-rgb), 0.6));
 }
 
 .logo-text {
@@ -217,7 +219,7 @@ body::after {
 .nav-link.active {
     color: #ffffff;
     background: var(--primary-glow);
-    border-color: rgba(99, 102, 241, 0.2);
+    border-color: rgba(var(--primary-rgb), 0.2);
     box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
@@ -296,13 +298,13 @@ body::after {
 .btn-primary {
     background: var(--primary);
     color: #ffffff;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25),
+    box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.25),
                 inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 .btn-primary:hover {
     background: var(--primary-hover);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4),
+    box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.4),
                 inset 0 1px 1px rgba(255, 255, 255, 0.3);
 }
 
@@ -369,8 +371,8 @@ body::after {
 
 .form-control:focus {
     outline: none;
-    border-color: rgba(99, 102, 241, 0.5);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1),
+    border-color: rgba(var(--primary-rgb), 0.5);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1),
                 inset 0 1px 2px rgba(0, 0, 0, 0.5);
     background: rgba(10, 10, 12, 0.6);
 }
@@ -395,9 +397,9 @@ body::after {
     border-radius: 99px;
     font-size: 0.75rem;
     font-weight: 600;
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(var(--primary-rgb), 0.1);
     color: #c7d2fe;
-    border: 1px solid rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(var(--primary-rgb), 0.15);
     width: fit-content;
 }
 
@@ -445,7 +447,7 @@ body::after {
 
 .stat-card:hover .stat-icon {
     color: var(--primary);
-    border-color: rgba(99, 102, 241, 0.3);
+    border-color: rgba(var(--primary-rgb), 0.3);
     background: var(--primary-glow);
 }
 
@@ -471,8 +473,8 @@ body::after {
 
 /* Popular Event Card Highlight */
 .popular-card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(10, 10, 12, 0.7) 100%);
-    border-color: rgba(99, 102, 241, 0.15);
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.06) 0%, rgba(10, 10, 12, 0.7) 100%);
+    border-color: rgba(var(--primary-rgb), 0.15);
 }
 
 /* Toast System (Dual State) */
@@ -640,7 +642,7 @@ body::after {
 .loading-spinner {
     width: 40px;
     height: 40px;
-    border: 2px solid rgba(99, 102, 241, 0.1);
+    border: 2px solid rgba(var(--primary-rgb), 0.1);
     border-top-color: var(--primary);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
