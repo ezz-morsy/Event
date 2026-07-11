@@ -45,6 +45,8 @@ platform statistics fetched from the backend API.
 -   Call `GET /api/dashboard` using `fetch()` on page load.
 -   Render statistics dynamically.
 -   Handle loading and error states.
+-   Router lives in `app.js` — maps hash routes to loader functions.
+-   Views are shown/hidden with JS display logic (no page reload).
 
 ## Backend Requirements
 
@@ -67,6 +69,8 @@ Use MongoDB aggregation in a single query.
 
 -   Responsive stat cards
 -   Mobile / Tablet / Desktop support
+-   Navigation bar must be **fixed at the top** with clear **active-state styling** on the current page link.
+-   Toast notifications: **green** for success, **red** for error.
 
 ------------------------------------------------------------------------
 
@@ -182,9 +186,9 @@ Disable when event reaches capacity.
 
 -   All fields required
 -   Capacity \> 0
--   Inline validation messages
+-   Inline validation messages — styled **red**, placed **beneath each invalid field**
 -   Success toast
--   Edit mode pre-fills form
+-   Edit mode pre-fills form — detect edit mode by reading event ID from the **URL hash**
 -   PUT for edit
 -   POST for create
 
@@ -283,12 +287,15 @@ Unique index:
 ## General Requirements
 
 -   Port 5000
--   `.env`
--   `.env.example`
--   `.gitignore`
--   Enable CORS
+-   `.env` — must contain: `MONGO_URI`, `PORT`, `CLIENT_ORIGIN`
+-   `.env.example` — same keys, empty values
+-   `.gitignore` — exclude `node_modules` and `.env`
+-   Enable CORS — allow origin **`http://localhost:5500`** (frontend Live Server)
 -   Global 404 middleware
 -   Global error middleware
+-   `package.json` scripts:
+    -   `npm start` → runs production server (`node server.js`)
+    -   `npm run dev` → runs dev server with nodemon (`nodemon server.js`)
 
 ------------------------------------------------------------------------
 
@@ -299,22 +306,25 @@ Unique index:
 -   Dashboard
 -   Events
 -   New Event
+-   Navigation bar must be **fixed at the top**
+-   Active link must be visually highlighted
 
 ## Views
 
--   Dashboard
--   Events
--   Detail
--   Create/Edit
+-   Dashboard (`#dashboard`)
+-   Events (`#events`)
+-   Detail (`#event/:id`)
+-   Create/Edit (`#new-event` / `#edit-event/:id`)
 
 ## Requirements
 
--   Single `index.html`
--   Central router
--   No full page reload
--   Toast notifications
--   Confirmation modal
--   Responsive layout
+-   Single `index.html` with one `<div id="app">`
+-   Central router in **`app.js`** — maps hash to loader functions
+-   View switching via JS **show/hide logic** — no full page reload
+-   Edit mode: detect by reading event ID from the **URL hash**
+-   Toast notifications: **green** for success, **red** for error
+-   Confirmation modal before destructive actions
+-   Responsive layout (Mobile / Tablet / Desktop)
 
 ------------------------------------------------------------------------
 
@@ -322,11 +332,17 @@ Unique index:
 
 ## Repositories
 
-Backend: - README.md - `.env.example`
+**Two separate repositories** must be submitted:
 
-Frontend: - README.md
+-   Backend repo name: **`event-platform-backend`**
+    -   `README.md` — setup steps, `.env` vars, all endpoints
+    -   `.env.example`
+    -   Exclude `node_modules` and `.env`
+-   Frontend repo name: **`event-platform-frontend`**
+    -   `README.md` — how to run, what each view does
+    -   Exclude `node_modules`
 
-Both: - Exclude `node_modules`
+> ⚠️ Current project uses a monorepo (`ezz-morsy/Event`) — must be split into two repos before submission.
 
 ## Demo Video
 
