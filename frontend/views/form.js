@@ -107,38 +107,36 @@ export default async function renderForm(appContainer, eventId) {
         // Clear all validation errors
         clearErrors();
 
-        const formData = {
-            title: form.title.value.trim(),
-            category: form.category.value,
-            capacity: parseInt(form.capacity.value, 10),
-            location: form.location.value.trim(),
-            date: new Date(form.date.value).toISOString(),
-            description: form.description.value.trim()
-        };
+        const title = form.title.value.trim();
+        const category = form.category.value;
+        const capacityVal = parseInt(form.capacity.value, 10);
+        const location = form.location.value.trim();
+        const dateVal = form.date.value;
+        const description = form.description.value.trim();
 
         // Client-side quick check
         let hasClientError = false;
-        if (!formData.title) {
+        if (!title) {
             showFieldError("event-title", "error-title", "Title is required");
             hasClientError = true;
         }
-        if (!formData.category) {
+        if (!category) {
             showFieldError("event-category", "error-category", "Category is required");
             hasClientError = true;
         }
-        if (isNaN(formData.capacity) || formData.capacity < 1) {
+        if (isNaN(capacityVal) || capacityVal < 1) {
             showFieldError("event-capacity", "error-capacity", "Capacity must be greater than 0");
             hasClientError = true;
         }
-        if (!formData.location) {
+        if (!location) {
             showFieldError("event-location", "error-location", "Location is required");
             hasClientError = true;
         }
-        if (!form.date.value) {
+        if (!dateVal) {
             showFieldError("event-date", "error-date", "Date & Time is required");
             hasClientError = true;
         }
-        if (!formData.description) {
+        if (!description) {
             showFieldError("event-description", "error-description", "Description is required");
             hasClientError = true;
         }
@@ -147,6 +145,15 @@ export default async function renderForm(appContainer, eventId) {
             window.showToast("Please correct the form errors.", "error");
             return;
         }
+
+        const formData = {
+            title,
+            category,
+            capacity: capacityVal,
+            location,
+            date: new Date(dateVal).toISOString(),
+            description
+        };
 
         try {
             window.showLoading();
